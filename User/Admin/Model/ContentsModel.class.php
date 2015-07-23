@@ -33,7 +33,7 @@ class ContentsModel extends Model {
 
         $rs['list'] = $list;  //集合
         $rs['page'] = $show;  //分页
-        $rs['pagePage'] = $showPage;  //分页
+        $rs['showPage'] = $showPage;  //分页
         $rs['count'] = $count; //总数
         return $rs;
     }
