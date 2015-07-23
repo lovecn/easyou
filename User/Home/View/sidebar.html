@@ -1,0 +1,41 @@
+<div class="am-u-sm-4">
+    <div class="am-input-group">
+        <form id="search" action="__ROOT__/search" method="POST" accept-charset="utf-8"  class="pjax_form">
+            <span class="am-input-group-btn">
+                <input type="text" class="am-form-field" name="s">
+                <button class="am-btn am-btn-default" type="submit"><span class="am-icon-search"></span></button>
+            </span>
+        </form>
+    </div>
+
+
+
+    <ul class="am-list">
+
+        <h3>分类目录</h3>
+
+        <volist name="catelist" id="vo">
+
+            <li><a href="__ROOT__/cate/{$vo.id}">{$vo.name}</a></li>
+
+        </volist>
+
+    </ul>
+
+
+
+    <div>
+
+        <h3>标签</h3>
+
+        <volist name="taglist" id="vo">
+
+            <a href="__ROOT__/tag/{$vo.id}" class="am-badge am-badge-default am-round">{$vo.name}</a>
+
+        </volist>
+
+    </div>
+
+
+
+</div>
