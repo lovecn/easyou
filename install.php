@@ -100,7 +100,7 @@
                         db_user: db_user,
                         db_pwd: db_pwd,
                         ceshi: 1
-                    }, function (data, status) {
+                    }, function(data, status) {
                         alert(data);
                     });
                 }
@@ -115,7 +115,7 @@
                         db_user: db_user,
                         db_pwd: db_pwd,
                         db_name: db_name,
-                    }, function (data, status) {
+                    }, function(data, status) {
                         alert(data);
                     });
                 }
@@ -161,6 +161,40 @@ class db {
 
 }
 
+//清除缓存
+function del_cache() {
+    header("Content-type: text/html; charset=utf-8");
+    //清文件缓存
+    $dirs = array("./User/Runtime/");
+    //清理缓存
+    foreach ($dirs as $value) {
+        $rs = rmdirr($value);
+    }
+    return $rs;
+}
+
+//清除方法
+function rmdirr($dirname) {
+    if (!file_exists($dirname)) {
+        return false;
+    }
+    if (is_file($dirname) || is_link($dirname)) {
+        return unlink($dirname);
+    }
+    $dir = dir($dirname);
+    if ($dir) {
+        while (false !== $entry = $dir->read()) {
+            if ($entry == '.' || $entry == '..') {
+                continue;
+            }
+            //递归
+            rmdirr($dirname . DIRECTORY_SEPARATOR . $entry);
+        }
+    }
+    $dir->close();
+    return rmdir($dirname);
+}
+
 //测试是否可用
 if (isset($_POST['ceshi'])) {
     $con = @mysql_connect($_POST['db_host'], $_POST['db_user'], $_POST['db_pwd']); //分别是数据库主机,数据库名,数据库密码
@@ -180,9 +214,7 @@ if (isset($_POST['db_host'])) {
         $line = trim($line);
 
         if ($line != "") {
-
             if (!($line{0} == "#" || $line{0} . $line{1} == "--")) {
-
                 $sqlstr.=$line;
             }
         }
@@ -195,17 +227,18 @@ if (isset($_POST['db_host'])) {
     if ($rs) {
         echo 'install:error';
     } else {
-        $data['DB_HOST']=$_POST['db_host'];
-        $data['DB_NAME']=$_POST['db_name'];
-        $data['DB_USER']=$_POST['db_user'];
-        $data['DB_PWD']=$_POST['db_pwd'];
-        $data['install']=1;
-        $confile ='config.php';
+        $data['DB_HOST'] = $_POST['db_host'];
+        $data['DB_NAME'] = $_POST['db_name'];
+        $data['DB_USER'] = $_POST['db_user'];
+        $data['DB_PWD'] = $_POST['db_pwd'];
+        $data['install'] = 1;
+        $confile = 'config.php';
         $c = require($confile);
         $c = array_merge($c, $data);
         $settingstr = '<?php ' . "\n"
                 . 'return  ' . var_export($c, true) . ';';
         file_put_contents($confile, $settingstr);
+        del_cache();
         echo 'install:success';
     }
 }
