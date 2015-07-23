@@ -194,7 +194,6 @@ function rmdirr($dirname) {
     $dir->close();
     return rmdir($dirname);
 }
-
 //测试是否可用
 if (isset($_POST['ceshi'])) {
     $con = @mysql_connect($_POST['db_host'], $_POST['db_user'], $_POST['db_pwd']); //分别是数据库主机,数据库名,数据库密码
