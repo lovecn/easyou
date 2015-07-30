@@ -75,11 +75,12 @@ class IndexController extends HomeController {
         //查询留言
         $rs=D('Admin/Comments')->getList($id,$config['web_comment_size']);
         $this->comment=$rs;
-        
         //标签列表
         $this->taglist=D('Admin/Tags')->getAll();
         //分类列表
-        $this->catelist = D('Admin/Categorys')->getAll();       
+        $this->catelist = D('Admin/Categorys')->getAll(); 
+        //最新留言
+        $this->commentlist=D('Admin/Comments')->getNew(5);        
         $this->display();
     }
     //相册列表页
