@@ -865,7 +865,13 @@ h3 a:hover{
 a{
     color: #3B3A3A;
 }
+a:hover{
+    color: #000;
+}
 img.am-thumbnail,.am-thumbnail img {
 max-width: 100%;
 height: auto
+}
+.am-list > li {
+    border-width: 0px 0px;
 }

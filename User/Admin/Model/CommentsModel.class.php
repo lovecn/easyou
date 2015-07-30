@@ -30,14 +30,13 @@ class CommentsModel extends Model {
     }
     //获取最新
     public function getNew($nums=1){
-        $rs=$this->limit($nums)->order('time desc')->select();
-        foreach($rs as $k=>&$v){
-            if($v['tid']==1){//文章留言
-                $v['title']=M('contents')
-                        ->where('id='.$v['pid'])
-                        ->getField('title');
-            }
-        }
+        $where['ey_comments.tid']=1;
+        $rs=$this->where($where)
+                ->join('ey_contents ON ey_comments.pid=ey_contents.id')
+                ->limit($nums)
+                ->field("ey_comments.*,ey_contents.title")
+                ->order('ey_comments.time desc')
+                ->select();
         return $rs;
     }
 
