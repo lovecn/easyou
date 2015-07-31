@@ -872,6 +872,9 @@ img.am-thumbnail,.am-thumbnail img {
 max-width: 100%;
 height: auto
 }
-.am-list > li {
+.am-list > li.sidebar {
     border-width: 0px 0px;
+}
+ol, ul {
+    padding-left: 0em;
 }

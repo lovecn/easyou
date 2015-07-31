@@ -176,11 +176,19 @@ function pjaxJump(url){
         timeout: 5000
     });
 }
+//页面加载完毕
+$(document).ready(function(){
+    //绑定菜单栏单击事件
+    $("ul.am-nav li").on('click', function() {
+        $("ul.am-nav li").removeClass('am-active');
+        $(this).addClass('am-active');
+    }); 
+});
 //pjax实现
 $(document).pjax('a', '#pjax_content', {fragment: '#pjax_content', timeout: 5000});
 //pjax开始
 $(document).on('pjax:send', function () {
-    $.AMUI.progress.start();
+    $.AMUI.progress.start();   
 });
 //pjax结束
 $(document).on('pjax:complete', function () {

@@ -39,6 +39,8 @@ class IndexController extends HomeController {
         $this->catelist = D('Admin/Categorys')->getAll();
         //最新留言
         $this->commentlist=D('Admin/Comments')->getNew(5);
+        //最新心情
+        $this->moodlist=D('Admin/Moods')->getNew(5);
         //文章列表
         if (I('s')) {//关键字查找
             $this->title='搜索 -';
@@ -80,7 +82,9 @@ class IndexController extends HomeController {
         //分类列表
         $this->catelist = D('Admin/Categorys')->getAll(); 
         //最新留言
-        $this->commentlist=D('Admin/Comments')->getNew(5);        
+        $this->commentlist=D('Admin/Comments')->getNew(5); 
+        //最新心情
+        $this->moodlist=D('Admin/Moods')->getNew(5);        
         $this->display();
     }
     //相册列表页
