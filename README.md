@@ -9,7 +9,3 @@ thinkphp+amazeUI完成
 前台采用pjax，保证速度。
 
 后台使用ajax+json方式提交和返回数据。
-
-#截图
-文章页
-
