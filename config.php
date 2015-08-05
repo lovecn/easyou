@@ -8,4 +8,5 @@ return  array (
   'DB_PORT' => '3306',
   'DB_PREFIX' => 'ey_',
   //'install' => 1,
+  'TMPL_EXCEPTION_FILE'=>'./User/Home/View/404.html' 
 );
