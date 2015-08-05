@@ -11,3 +11,5 @@ thinkphp+amazeUI完成
 后台使用ajax+json方式提交和返回数据。
 
 #截图
+文章页
+

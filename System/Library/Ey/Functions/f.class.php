@@ -7,6 +7,9 @@ class f {//自定义扩展类
     function filelist() {             //返回主题文件路径
         $dir = APP_ROOT . "/User/Home/View"; //主题目录
         $list = scandir($dir);
+		if(!$list){
+			echo "可能scandir函数被禁用或没有打开文件权限，主题编辑功能异常。请检查服务器配置！";
+		}
         foreach ($list as $file) {//遍历
             $path = $dir . "/" . $file;
             if (is_dir($path) && $file != "." && $file != "..") { //判断是否是路径

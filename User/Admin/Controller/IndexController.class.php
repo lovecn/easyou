@@ -39,7 +39,7 @@ class IndexController extends AdminController {
     //获取主题内容
     public function getHtml($path){
         $myfile = fopen(APP_ROOT . "/User/Home/View/" . $path, "r") or die(json_encode(array('status' => 0, 'msg' => '没有文件夹权限权限')));
-        $html = fread($myfile, filesize(APP_ROOT . "/User/Home/View/" . $path)); 
+		$html = fread($myfile, filesize(APP_ROOT . "/User/Home/View/" . $path)); 
         fclose($myfile);
         return $html;
     }
