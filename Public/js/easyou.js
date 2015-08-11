@@ -95,7 +95,7 @@ function getComment() {
         eval('data=' + data);
         if (data.body != "") {
             for (var p in data.body) {//遍历数组，P为索引
-                var str='<article class="am-comment am-animation-scale-up am-margin-vertical">  <a href="'+data.body[p].address+'">  <img src="'+root+'/Public/img/Visitor1.png" alt="" class="am-comment-avatar" width="48" height="48"/>  </a><div class="am-comment-main">  <header class="am-comment-hd">  <div class="am-comment-meta">  <a href="'+data.body[p].address+'" class="am-comment-author">' + data.body[p].name + '</a>评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">' + getDate(data.body[p].time) + '</time> ';
+                var str='<article class="am-comment am-animation-scale-up am-margin-vertical">  <a href="'+data.body[p].address+'">  <img src="'+root+'/Public/img/Visitor1.png" alt="" class="am-comment-avatar" width="48" height="48"/>  </a><div class="am-comment-main">  <header class="am-comment-hd">  <div class="am-comment-meta">  <a href="'+data.body[p].address+'" class="am-comment-author">' + data.body[p].name + '</a>评论于 <time>' + getDate(data.body[p].time) + '</time> ';
                 str+='<a href="javascript:void(0)" onclick="';
                 str+="showDiv('respond','回复："+data.body[p].name+"',"+data.body[p].id+")";
                 str+='" class="am-comment-author">回复</a> </div> </header>';
@@ -156,9 +156,17 @@ function popPicture(id){
     $("#my-popup-img").attr('src',src);
     var theImage = new Image();
     theImage.src=src;
+    var w=theImage.width;
+    var h=theImage.height;
+    if(w>800){
+        w=800;
+    }
+    if(h>600){
+        h=600;
+    }
     window.d = dialog({
         title: title,
-        content:'<img onclick="artClose()" src="'+src+'">',
+        content:'<img class="am-thumbnail" onclick="artClose()" src="'+src+'" style="width:'+w+'px;height:'+h+'px;">',
         quickClose: true// 点击空白处快速关闭
     });
     d.show();

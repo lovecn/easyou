@@ -82,14 +82,14 @@ class Page{
         if($this->nowPage>1 and $this->nowPage<=$data['totalPage']){//当前页小于总页数切大于1则显示上一页
             $data['upPage']  = $this->nowPage - 1;                  //上页
         }
-        if($this->nowPage<$data['totalPage']){      //当前页小于总页数则显示下一页链接
-            $data['downPage']  = $this->nowPage + 1;//下页
+        if($this->nowPage<$data['totalPage']){                      //当前页小于总页数则显示下一页链接
+            $data['downPage']  = $this->nowPage + 1;                //下页
         }
-        $data['nowPage']=$this->nowPage;            //当前页
-        for($i=1;$i<=$total;$i++){                  //输出全部页码
+        $data['nowPage']=$this->nowPage;                            //当前页
+        for($i=1;$i<=$total;$i++){                                  //输出全部页码
             $data['pageList'][]=$i;
         }
-        if($total>1){
+        if($total>1 and $total>=$data['nowPage']){                  //总页数大于1且大于于当前页
             return $data;
         } 
     }
