@@ -89,7 +89,7 @@ class Page{
         for($i=1;$i<=$total;$i++){                                  //输出全部页码
             $data['pageList'][]=$i;
         }
-        if($total>1 and $total>=$data['nowPage']){                  //总页数大于1且大于于当前页
+        if($total!=1 and $total>=$data['nowPage']){                               //总页数大于当前页
             return $data;
         } 
     }
